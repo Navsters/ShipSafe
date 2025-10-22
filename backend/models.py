@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timezone
 from sqlalchemy import Column, Integer, String, DateTime, Boolean, ForeignKey, Index
 from .db import Base
 
@@ -10,7 +10,7 @@ class ReleaseRequest(Base):
     id = Column(Integer, primary_key=True, index=True)
     software_name = Column(String, nullable=False)
     software_version = Column(String, nullable=False)
-    developer_id = Column(Integer, ForeignKey("developer_information.developer_id"), index=True,Unique=True,nullable=False)
+    developer_id = Column(Integer, ForeignKey("developer_information.developer_id"), index=True,nullable=False)
     release_notes = Column(String)
 
     risk_level = Column(String, default="unknown")
@@ -34,8 +34,8 @@ class Approval(Base):
     __tablename__ = "approval"
 
     approval_id = Column(Integer, primary_key=True, index=True)
-    release_request_id = Column(Integer, ForeignKey("release_request.id"), index=True,Unique=True,nullable=False)
-    reviewer_id = Column(Integer, ForeignKey("developer_information.developer_id"), index=True,Unique=True,nullable=False)
+    release_request_id = Column(Integer, ForeignKey("release_request.id"), index=True,nullable=False)
+    reviewer_id = Column(Integer, ForeignKey("developer_information.developer_id"), index=True, nullable=False)
     aproval_status = Column(String, default="pending")
     approval_decision = Column(Boolean, nullable=False)
     approval_timestamp = Column(DateTime, default=datetime.now)
@@ -45,9 +45,9 @@ class AuditLog(Base):
     __tablename__ = "audit_log"
 
     audit_log_id = Column(Integer, primary_key=True, index=True)
-    release_request_id = Column(Integer, ForeignKey("release_request.id"), index=True,Unique=True,nullable=False)
+    release_request_id = Column(Integer, ForeignKey("release_request.id"), index=True, nullable=False)
     action = Column(String, nullable=False)
-    actor_id = Column(Integer, ForeignKey("developer_information.developer_id"), index=True,Unique=True,nullable=False)
+    actor_id = Column(Integer, ForeignKey("developer_information.developer_id"), index=True, nullable=False)
     timestamp = Column(DateTime, default=datetime.now)
 
 
