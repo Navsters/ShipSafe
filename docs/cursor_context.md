@@ -200,3 +200,53 @@ Time/Complexity Guidance (MVP-scale)
 - Database: SQLite vs PostgreSQL — SQLite is zero-ops; PostgreSQL adds ~1–2 hours setup and config.
 - ORM choice: SQLModel vs SQLAlchemy ORM — SQLModel often saves ~1.5–2.5 hours for a 3–4 table MVP by reducing boilerplate; SQLAlchemy ORM is more explicit and standard at scale.
 
+---
+
+## 📍 CURRENT PROJECT STATUS (Last Updated: Desktop Setup Session)
+
+### ✅ COMPLETED
+- **Environment Setup**: Python 3.11, virtual environment (.venv) created
+- **Dependencies Installed**: FastAPI 0.119.1, SQLAlchemy 2.0.44, Uvicorn 0.38.0, Pydantic 2.12.3
+- **Basic FastAPI App**: Health endpoint working (`GET /health` returns `{"status":"ok"}`)
+- **Database Models**: SQLAlchemy models defined in `backend/models.py` (ReleaseRequests table)
+- **Database Config**: SQLite setup in `backend/db.py`
+- **Project Structure**: Backend folder with main.py, models.py, db.py
+- **Git Setup**: .gitignore configured, requirements.txt generated, committed to GitHub
+- **Code Issues Fixed**: Fixed typos in models.py (DateTime, default) and db.py (autoflush=False)
+
+### 🔧 CURRENT STATE
+- **Phase**: Phase 1 - FastAPI + SQLite setup (IN PROGRESS)
+- **Working Directory**: `C:\Users\Navneet\Documents\ShipSafe Dev Application\ShipSafe`
+- **Virtual Environment**: Created but activation has PowerShell execution policy issues
+- **API Status**: Basic FastAPI app running on http://127.0.0.1:8000
+- **Database**: SQLite configured but tables not yet created
+- **Next Logical Step**: Create database tables and add CRUD endpoints for release requests
+
+### 🎯 IMMEDIATE NEXT STEPS
+1. **Database Initialization**: Create database tables from models
+2. **CRUD Endpoints**: Add POST/GET endpoints for release requests
+3. **Policy Engine**: Implement mock compliance rules
+4. **Test Endpoints**: Verify API functionality
+
+### 🚧 KNOWN ISSUES
+- Virtual environment activation blocked by PowerShell execution policy
+- Using `python -m uvicorn` instead of direct `uvicorn` command due to PATH issues
+- Database tables not yet created (need to run Base.metadata.create_all())
+
+### 📋 DEVELOPMENT NOTES
+- Using SQLAlchemy ORM (not SQLModel) as planned
+- SQLite database file will be `./shipsafe.db`
+- All dependencies properly captured in requirements.txt
+- Ready for laptop sync via git pull + pip install -r requirements.txt
+
+### 📚 RECENT LEARNING SESSION
+**Terminology Clarified:**
+- **CRUD**: Create, Read, Update, Delete operations
+- **HTTP Methods**: GET (read), POST (create), PUT/PATCH (update), DELETE (remove)
+- **Endpoints**: URLs that API responds to (e.g., GET /releases, POST /releases)
+- **ORM**: Object-Relational Mapper - lets you work with databases using Python objects instead of raw SQL
+- **Declarative Base**: Special class that gives models database superpowers, handles Python-to-SQL mapping
+- **Class Differences**: Regular classes use `__init__` constructor; SQLAlchemy models use `__tablename__` attribute and `Column()` definitions
+
+**Next Session Focus**: Database table creation and CRUD endpoint implementation
+
