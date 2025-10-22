@@ -11,7 +11,7 @@ engine = create_engine(
 )
 
 #creates new isolated session objects
-SessionLocal = sessionmaker(autocommit=False,autoflush=false,bind=engine)
+SessionLocal = sessionmaker(autocommit=False,autoflush=False,bind=engine)
 
 #stores our ORM
 Base=declarative_base()

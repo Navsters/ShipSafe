@@ -233,6 +233,15 @@ Time/Complexity Guidance (MVP-scale)
 - Using `python -m uvicorn` instead of direct `uvicorn` command due to PATH issues
 - Database tables not yet created (need to run Base.metadata.create_all())
 
+### 🔧 POWERSHELL EXECUTION POLICY FIX (for both devices)
+**Problem**: `.\.venv\Scripts\Activate.ps1` fails with "running scripts is disabled"
+**Solution**: Run this command once per machine:
+```
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+```
+**Alternative**: Use batch file instead: `.\.venv\Scripts\activate.bat`
+**Verify**: After activation, prompt shows `(.venv)` and `python -c "import sys; print(sys.executable)"` shows `.venv\Scripts\python.exe`
+
 ### 📋 DEVELOPMENT NOTES
 - Using SQLAlchemy ORM (not SQLModel) as planned
 - SQLite database file will be `./shipsafe.db`
