@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from .db import Base, engine
+from . import models
 
 app = FastAPI(title="ShipSafe API", version="0.1.0")
 
