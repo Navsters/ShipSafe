@@ -17,6 +17,7 @@ class ReleaseRequest(Base):
     status = Column(String, default="pending")
 
     created_at = Column(DateTime, default=datetime.now)
+    updated_at = Column(DateTime, default=datetime.now)
 
 
 class Developer(Base):
