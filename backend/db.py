@@ -15,3 +15,12 @@ SessionLocal = sessionmaker(autocommit=False,autoflush=False,bind=engine)
 
 #stores our ORM
 Base=declarative_base()
+
+#initiate a new database session
+def get_db():
+    db=SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
+
