@@ -44,9 +44,13 @@ class ReleaseRequestUpdate(BaseModel):
 
 class ReleaseRequest(ReleaseRequestBase):
     id: int
-    risk_level: Literal["low", "medium", "high"]
+    risk_level: Literal["low", "high"]
     status: Literal["pending", "approved", "rejected"]
     created_at: datetime
     updated_at: datetime
     class Config:
         from_attributes = True
+
+class ApprovalPayload(BaseModel):
+    release_request_id: int
+    developer_id: int

@@ -11,4 +11,3 @@ def evaluate_release(payload: ReleaseRequestBase) -> tuple[str,str]:
     else:
         return "low", "Low risk release detected"
 
-
