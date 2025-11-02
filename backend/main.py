@@ -80,8 +80,8 @@ def create_release(release: schemas.ReleaseRequestCreate, db: Session = Depends(
     db.add(db_release)
     db.commit()
     db.refresh(db_release)
-    return db_release 
-    
+    return db_release
+
 @app.post("/releases/approve", response_model=schemas.ReleaseRequest)
 def approve_release(payload: ApprovalPayload, db: Session = Depends(get_db)):
     approved_release = approve_existing_release(payload, db)
@@ -96,5 +96,6 @@ def get_release(release_id: int, db: Session = Depends(get_db)):
 
 @app.get("/releases", response_model=list[schemas.ReleaseRequest])
 def get_releases(db: Session = Depends(get_db)):
-    releases = db.query(models.ReleaseRequest).all()
+    releases = db.query(models.ReleaseRequest).order_by(models.ReleaseRequest.id.desc()).all()
     return releases
+
